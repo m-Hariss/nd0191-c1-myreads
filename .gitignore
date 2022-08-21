@@ -1,0 +1,11 @@
+# PyCharm
+.idea/
+
+# VSCode
+.vscode
+.vscode/
+
+# Front-end
+node_modules/
+package-lock.json
+yarn.lock
