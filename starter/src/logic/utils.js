@@ -1,4 +1,5 @@
 // Utils
+export { default as cloneDeep } from 'lodash/cloneDeep';
 
 
 export const listToObjectByKeyValue = (list, key) => {

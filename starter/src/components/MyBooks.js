@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
-import {getAll} from "../api";
-import {listToObjectByKeyValue} from "../logic/utils";
+import {getAll, update} from "../api";
+import {cloneDeep, listToObjectByKeyValue} from "../logic/utils";
 import {ROUTE_URLS, SHELF_LABEL} from "../logic/constants";
 import Book from "./Book";
 import {Link} from "react-router-dom";
@@ -13,6 +13,24 @@ const MyBooks = () => {
     useEffect(() => {
         getAll().then(allBooks => setBooks(listToObjectByKeyValue(allBooks, 'shelf')));
     }, []);
+
+    const handleShelfUpdate = (book, currShelf) => {
+        update(book, currShelf).then(
+        () => {
+                const booksCopy = cloneDeep(books);
+                const prevShelf = book.shelf;
+
+                const bookIndex = booksCopy[prevShelf].findIndex(bookItem => bookItem.id === book.id);
+                booksCopy[prevShelf].splice(bookIndex, 1);
+
+                book.shelf = currShelf;
+                const shelfBooks = booksCopy[currShelf] || [];
+                shelfBooks.push(book);
+
+                setBooks(booksCopy);
+            }
+        )
+    }
 
     return (
         <div>
@@ -29,7 +47,7 @@ const MyBooks = () => {
                               <ol className="books-grid">
                               {books[shelf].map(book => (
                                    <li key={book.id}>
-                                    <Book book={book}/>
+                                    <Book book={book} updateShelf={(newShelf) => handleShelfUpdate(book, newShelf)}/>
                                    </li>
                                   )
                               )}
