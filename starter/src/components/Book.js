@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types';
+import { BOOK_CLASS, BOOK_SHELF_OPTIONS } from "../logic/constants";
 
 
-const bookShelfOptions = [
-    {label: 'Currently Reading', value: 'currentlyReading'},
-    {label: 'Want to Read', value: 'wantToRead'},
-    {label: 'Read', value: 'read'},
-    {label: 'None', value: 'none'},
-]
-
-const BookShelves = () => (
+const BookShelves = ({selectedShelf}) => (
     <div className="book-shelf-changer">
-        <select>
+        <select value={selectedShelf}>
             <option value="none" disabled>
             Move to...
             </option>
             {
-                bookShelfOptions.map(({label, value}) => (
+                BOOK_SHELF_OPTIONS.map(({label, value}) => (
                     <option value={value}>
                         {label}
                     </option>
@@ -25,7 +19,14 @@ const BookShelves = () => (
     </div>
 );
 
-const Book = ({thumbnail, name, writerName}) => {
+BookShelves.propTypes = {
+    selectedShelf: PropTypes.number.isRequired
+}
+
+const Book = ({book}) => {
+    const {authors, title, shelf, imageLinks} = book;
+    const { thumbnail } = imageLinks;
+
     return (
         <div className="book">
             <div className="book-top">
@@ -37,18 +38,18 @@ const Book = ({thumbnail, name, writerName}) => {
                   backgroundImage: `url(${thumbnail})`,
                 }}
               ></div>
-              <BookShelves/>
+              <BookShelves selectedShelf={shelf}/>
             </div>
-            <div className="book-title">{name}</div>
-            <div className="book-authors">{writerName}</div>
+            <div className="book-title">{title}</div>
+            <div className="book-authors">
+                {authors.join(', ')}
+            </div>
           </div>
     );
 }
 
 Book.propTypes = {
-    name: PropTypes.string.isRequired,
-    writerName: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
+    book: PropTypes.objectOf(PropTypes.shape(BOOK_CLASS).isRequired).isRequired
 }
 
 export default Book;
