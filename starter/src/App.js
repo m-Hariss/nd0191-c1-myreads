@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/App.css";
 import { MyBooks, BookSearch } from "./components";
 import {Route, Routes} from "react-router-dom";
 import {ROUTE_URLS} from "./logic/constants";
