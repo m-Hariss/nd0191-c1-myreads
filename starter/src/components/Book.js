@@ -10,7 +10,7 @@ const BookShelves = ({selectedShelf}) => (
             </option>
             {
                 BOOK_SHELF_OPTIONS.map(({label, value}) => (
-                    <option value={value}>
+                    <option key={value} value={value}>
                         {label}
                     </option>
                 ))
@@ -20,7 +20,7 @@ const BookShelves = ({selectedShelf}) => (
 );
 
 BookShelves.propTypes = {
-    selectedShelf: PropTypes.number.isRequired
+    selectedShelf: PropTypes.string.isRequired
 }
 
 const Book = ({book}) => {
@@ -49,7 +49,7 @@ const Book = ({book}) => {
 }
 
 Book.propTypes = {
-    book: PropTypes.objectOf(PropTypes.shape(BOOK_CLASS).isRequired).isRequired
+    book: PropTypes.shape(BOOK_CLASS).isRequired
 }
 
 export default Book;

@@ -26,10 +26,10 @@ export const BOOK_CLASS = {
     title: PropTypes.string.isRequired,
     shelf: PropTypes.string.isRequired,
 
-    imageLinks: PropTypes.objectOf(PropTypes.shape({
+    imageLinks: PropTypes.shape({
         smallThumbnail: PropTypes.string.isRequired,
         thumbnail: PropTypes.string.isRequired,
-    }).isRequired).isRequired,
+    }).isRequired
 };
 
 

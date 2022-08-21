@@ -24,12 +24,12 @@ const MyBooks = props => {
               <div className="list-books-content">
                 <div>
                     {Object.keys(books).map(shelf => (
-                      <div className="bookshelf">
+                      <div key={shelf} className="bookshelf">
                           <h2 className="bookshelf-title">{SHELF_LABEL[shelf]}</h2>
                           <div className="bookshelf-books">
                               <ol className="books-grid">
                               {books[shelf].map(book => (
-                                   <li>
+                                   <li key={book.id}>
                                     <Book book={book}/>
                                    </li>
                                   )
