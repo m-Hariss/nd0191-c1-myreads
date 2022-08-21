@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {useEffect, useState} from "react";
 
 import {getAll} from "../api";
@@ -8,7 +7,7 @@ import Book from "./Book";
 import {Link} from "react-router-dom";
 
 
-const MyBooks = props => {
+const MyBooks = () => {
     const [books, setBooks] = useState({});
 
     useEffect(() => {
@@ -48,10 +47,5 @@ const MyBooks = props => {
     );
 }
 
-MyBooks.prototype = {
-    showSearchPage: PropTypes.bool.isRequired,
-
-    setShowSearchPage: PropTypes.func.isRequired,
-}
 
 export default MyBooks;
