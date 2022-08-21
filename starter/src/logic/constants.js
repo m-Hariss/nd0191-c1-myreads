@@ -31,3 +31,11 @@ export const BOOK_CLASS = {
         thumbnail: PropTypes.string.isRequired,
     }).isRequired).isRequired,
 };
+
+
+// Route URLS
+
+export const ROUTE_URLS = {
+    HOME: '/',
+    SEARCH: '/search',
+}

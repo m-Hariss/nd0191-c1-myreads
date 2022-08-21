@@ -3,8 +3,9 @@ import {useEffect, useState} from "react";
 
 import {getAll} from "../api";
 import {listToObjectByKeyValue} from "../logic/utils";
-import {SHELF_LABEL} from "../logic/constants";
+import {ROUTE_URLS, SHELF_LABEL} from "../logic/constants";
 import Book from "./Book";
+import {Link} from "react-router-dom";
 
 
 const MyBooks = props => {
@@ -41,7 +42,7 @@ const MyBooks = props => {
                 </div>
               </div>
               <div className="open-search">
-                <a onClick={() => props.setShowSearchPage(!props.showSearchPage)}>Add a book</a>
+                <Link to={ROUTE_URLS.SEARCH}>Add a book</Link>
               </div>
         </div>
     );

@@ -1,15 +1,13 @@
-import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
+import {ROUTE_URLS} from "../logic/constants";
 
 
-const BookSearch = props => (
+const BookSearch = () => (
         <div className="search-books">
           <div className="search-books-bar">
-            <a
-              className="close-search"
-              onClick={() => props.setShowSearchPage(!props.showSearchPage)}
-            >
+            <Link className="close-search" to={ROUTE_URLS.HOME}>
               Close
-            </a>
+            </Link>
             <div className="search-books-input-wrapper">
               <input
                 type="text"
@@ -23,11 +21,5 @@ const BookSearch = props => (
         </div>
 );
 
-
-BookSearch.prototype = {
-    showSearchPage: PropTypes.bool.isRequired,
-
-    setShowSearchPage: PropTypes.func.isRequired,
-}
 
 export default BookSearch;
