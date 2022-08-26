@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import {getAll, update} from "../api";
 import {cloneDeep, listToObjectByKeyValue} from "../logic/utils";
 import {ROUTE_URLS, SHELF_LABEL} from "../logic/constants";
-import Book from "./Book";
 import {Link} from "react-router-dom";
+import Shelf from "./Shelf";
 
 
 const MyBooks = () => {
@@ -41,19 +41,13 @@ const MyBooks = () => {
               <div className="list-books-content">
                 <div>
                     {Object.keys(books).map(shelf => (
-                      <div key={shelf} className="bookshelf">
-                          <h2 className="bookshelf-title">{SHELF_LABEL[shelf]}</h2>
-                          <div className="bookshelf-books">
-                              <ol className="books-grid">
-                              {books[shelf].map(book => (
-                                   <li key={book.id}>
-                                    <Book book={book} updateShelf={(newShelf) => handleShelfUpdate(book, newShelf)}/>
-                                   </li>
-                                  )
-                              )}
-                             </ol>
-                          </div>
-                      </div>)
+                            <Shelf
+                                key={shelf}
+                                books={books[shelf]}
+                                shelfName={SHELF_LABEL[shelf]}
+                                handleShelfUpdate={handleShelfUpdate}
+                            />
+                        )
                     )}
                   </div>
                 </div>
