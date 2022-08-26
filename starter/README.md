@@ -29,6 +29,7 @@ To get started developing right away:
     ├── components
     │   ├── Book.js # Component that displays books information with shelf management.
     │   ├── BookSearch.js # Component that displays books library with search option and with shelf management.
+    │   ├── Shelf.js # Component that displays shelf with its relevant books.
     │   ├── MyBooks.js # Component that displays user's books collection with shelf wise division and shelf management.
     │   └── index.html # Export all Components that is supposed to be used outside through one file
     ├── css
